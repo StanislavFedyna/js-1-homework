@@ -28,17 +28,21 @@ class UserList {
       return array[i].id === id;
     })
     if (idBoolStatus) {
-      //Спочатку фільтруємо
+      //Filtering
       this.allUsers = this.allUsers.filter(function (item, i, array) {
         return array[i].id === id;
       })
-      //Потім виводимо
+      //Log out data
       console.log(this.allUsers);
     } else {
       return console.log('something goes wrong')
     }
   }
+
+  logUsersCount() {
+    console.log(this.allUsers.length)
+  }
 }
 
-let user = new UserList(allUsers);
-user.showById(1)
+let userList = new UserList(allUsers);
+userList.logUsersCount()
