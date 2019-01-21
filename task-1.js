@@ -29,13 +29,11 @@ class UserList {
     })
     if (idBoolStatus) {
       //Спочатку фільтруємо
-      this.allUsers.filter(function (item, i, array) {
+      this.allUsers = this.allUsers.filter(function (item, i, array) {
         return array[i].id === id;
       })
       //Потім виводимо
-      this.allUsers.forEach(function (item, i, array) {
-        console.log(array[i].name)
-      })
+      console.log(this.allUsers);
     } else {
       return console.log('something goes wrong')
     }
@@ -43,4 +41,4 @@ class UserList {
 }
 
 let user = new UserList(allUsers);
-user.showById(2)
+user.showById(1)
