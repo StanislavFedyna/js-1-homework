@@ -42,7 +42,18 @@ class UserList {
   logUsersCount() {
     console.log(this.allUsers.length)
   }
+
+  removeById(removeId) {
+    for (let i = 0; i < this.allUsers.length; i++) {
+      if (this.allUsers[i].id === removeId) {
+        console.log('buy buy ' + this.allUsers[i].first_name)
+        delete this.allUsers[i];
+      } else {
+        continue;
+      }
+    }
+  }
 }
 
 let userList = new UserList(allUsers);
-userList.logUsersCount()
+userList.removeById(1)
