@@ -12,16 +12,35 @@ let allUsers = [{
   "language": "Oriya"
 }]
 
-class UserList{
-  constructor(allUsers){
+class UserList {
+  constructor(allUsers) {
     this.allUsers = allUsers;
   }
-  showNames(){ //Вивести імена
-    this.allUsers.forEach(function(item, i, array){
+
+  showNames() { //Вивести імена
+    this.allUsers.forEach(function (item, i, array) {
       console.log(array[i].first_name)
     })
+  }
+
+  showById(id) { //Вивести по id Об'єкт користувача
+    let idBoolStatus = this.allUsers.some(function (item, i, array) {
+      return array[i].id === id;
+    })
+    if (idBoolStatus) {
+      //Спочатку фільтруємо
+      this.allUsers.filter(function (item, i, array) {
+        return array[i].id === id;
+      })
+      //Потім виводимо
+      this.allUsers.forEach(function (item, i, array) {
+        console.log(array[i].name)
+      })
+    } else {
+      return console.log('something goes wrong')
+    }
   }
 }
 
 let user = new UserList(allUsers);
-console.log(user.showNames())
+user.showById(2)
