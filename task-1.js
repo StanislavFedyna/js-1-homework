@@ -25,9 +25,9 @@ let allUsers = [{
 }]
 
 // newUser for testing ADD method
-let newUser = {
+let userForTestingAdd = {
   "id": '',
-  "first_name": "Stas",
+  "first_name": "Stasislav",
   "last_name": '',
   "gender": '',
   "language": ''
@@ -58,6 +58,7 @@ class UserList {
       return console.log('something goes wrong')
     }
   }
+
   // All users count
   logUsersCount() {
     console.log(this.allUsers.length)
@@ -69,6 +70,7 @@ class UserList {
       return array[i].id === removeId;
     })
 
+    // Removing process
     if (removeIdStatus) {
       for (let i = 0; i < this.allUsers.length; i++) {
         if (this.allUsers[i].id === removeId) {
@@ -79,30 +81,29 @@ class UserList {
           continue;
         }
       }
-    } else {
+    } else { //User is not found
       return console.log('Unable to find user with id:' + removeId)
     }
   }
 
-  add(newUser, id = this.allUsers.length + 1) {
+  add(newUser) {
     //Generation unique id for new user
-    let newUserId = id;
-    let newUserPosition = this.allUsers.length + 1;
+    let newUserId = this.allUsers.length;
+    let newUserPosition = this.allUsers.length;
     //Check username
     if (newUser.first_name === '') {
       return console.log('Ops, first name is empty')
     } else {
       // Add new user
       this.allUsers.push(newUser);
+      // Included new id for new user
       this.allUsers[newUserPosition].id = newUserId;
       console.log('Hi everyone, I am ' + this.allUsers[newUserPosition].first_name)
     }
 
-
-    console.log(allUsers)
   }
 
 }
 
 let userList = new UserList(allUsers);
-userList.add(newUser)
+userList.add(userForTestingAdd)
