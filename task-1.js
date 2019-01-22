@@ -10,6 +10,18 @@ let allUsers = [{
   "last_name": "Ashall",
   "gender": "Male",
   "language": "Oriya"
+}, {
+  "id": 3,
+  "first_name": "Wait",
+  "last_name": "Dobrowolny",
+  "gender": "Male",
+  "language": "Chinese"
+}, {
+  "id": 4,
+  "first_name": "Mayor",
+  "last_name": "Fumagall",
+  "gender": "Male",
+  "language": "Kashmiri"
 }]
 
 class UserList {
@@ -44,15 +56,25 @@ class UserList {
   }
 
   removeById(removeId) {
-    for (let i = 0; i < this.allUsers.length; i++) {
-      if (this.allUsers[i].id === removeId) {
-        console.log('buy buy ' + this.allUsers[i].first_name)
-        delete this.allUsers[i];
-      } else {
-        continue;
+    let removeIdStatus = this.allUsers.some(function (item, i, array) {
+      return array[i].id === removeId;
+    })
+
+    if (removeIdStatus) {
+      for (let i = 0; i < this.allUsers.length; i++) {
+        if (this.allUsers[i].id === removeId) {
+          console.log('buy buy ' + this.allUsers[i].first_name + 'with id: '+ this.allUsers[i].id)
+          delete this.allUsers[i];
+          return;
+        } else {
+          continue;
+        }
       }
+    } else {
+      return console.log('Unable to find user with id:' + removeId)
     }
   }
+
 }
 
 let userList = new UserList(allUsers);
