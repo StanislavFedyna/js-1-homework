@@ -24,18 +24,26 @@ let allUsers = [{
   "language": "Kashmiri"
 }]
 
+// newUser for testing ADD method
+let newUser = {
+  "id": '',
+  "first_name": "Stas",
+  "last_name": '',
+  "gender": '',
+  "language": ''
+}
 class UserList {
   constructor(allUsers) {
     this.allUsers = allUsers;
   }
 
-  showNames() { //Вивести імена
+  showNames() { //Show all names method
     this.allUsers.forEach(function (item, i, array) {
       console.log(array[i].first_name)
     })
   }
 
-  showById(id) { //Вивести по id Об'єкт користувача
+  showById(id) { //Show user with same id
     let idBoolStatus = this.allUsers.some(function (item, i, array) {
       return array[i].id === id;
     })
@@ -50,12 +58,13 @@ class UserList {
       return console.log('something goes wrong')
     }
   }
-
+  // All users count
   logUsersCount() {
     console.log(this.allUsers.length)
   }
 
   removeById(removeId) {
+    //Filtering
     let removeIdStatus = this.allUsers.some(function (item, i, array) {
       return array[i].id === removeId;
     })
@@ -63,7 +72,7 @@ class UserList {
     if (removeIdStatus) {
       for (let i = 0; i < this.allUsers.length; i++) {
         if (this.allUsers[i].id === removeId) {
-          console.log('buy buy ' + this.allUsers[i].first_name + 'with id: '+ this.allUsers[i].id)
+          console.log('buy buy ' + this.allUsers[i].first_name + 'with id: ' + this.allUsers[i].id)
           delete this.allUsers[i];
           return;
         } else {
@@ -75,7 +84,25 @@ class UserList {
     }
   }
 
+  add(newUser, id = this.allUsers.length + 1) {
+    //Generation unique id for new user
+    let newUserId = id;
+    let newUserPosition = this.allUsers.length + 1;
+    //Check username
+    if (newUser.first_name === '') {
+      return console.log('Ops, first name is empty')
+    } else {
+      // Add new user
+      this.allUsers.push(newUser);
+      this.allUsers[newUserPosition].id = newUserId;
+      console.log('Hi everyone, I am ' + this.allUsers[newUserPosition].first_name)
+    }
+
+
+    console.log(allUsers)
+  }
+
 }
 
 let userList = new UserList(allUsers);
-userList.removeById(1)
+userList.add(newUser)
